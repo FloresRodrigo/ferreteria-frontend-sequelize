@@ -8,9 +8,9 @@
           {{ mensaje }}
         </p>
         <div class="pago-actions mt-4">
-          <button class="btn btn-primary w-100 mb-2">
+          <a routerLink="/mi-perfil" [queryParams]="{ tab: 'tickets' }" class="btn btn-primary w-100 mb-2">
             Ir a mis tickets
-          </button>
+          </a>
           <a routerLink="/compra" class="btn btn-outline-primary w-100">
             Volver a la tienda
           </a>

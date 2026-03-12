@@ -123,8 +123,10 @@ export class Carrito implements OnInit, OnDestroy {
       alert("El carrito esta vacio");
       return;
     };
+    this.loading.set(true);
     this.ticketService.createTicket(carrito).subscribe(
       (result:any) => {
+        this.loading.set(false)
         this.ticket.set(Object.assign(new TicketModel(), result.data));
         this.mostrarModal.set(true);
         this.carrito.set([]);
@@ -132,6 +134,7 @@ export class Carrito implements OnInit, OnDestroy {
         window.dispatchEvent(new Event('carritoActualizado'));
       },
       (error:any) => {
+        this.loading.set(false);
         alert(error.error.msg || "Error del servidor")
       }
     );

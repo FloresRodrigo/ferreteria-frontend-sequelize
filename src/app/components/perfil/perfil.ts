@@ -5,6 +5,7 @@ import { Usuario as UsuarioModel} from '../../models/usuario';
 import { Ticket as TicketModel } from '../../models/ticket';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -32,11 +33,16 @@ export class Perfil implements OnInit {
   mostrarPassword = signal<boolean>(false);
 
   constructor(private usuarioService: UsuarioService,
-              private ticketService: TicketService
+              private ticketService: TicketService,
+              private route: ActivatedRoute
   ) {};
 
   ngOnInit(): void {
     this.cargarPerfil();
+    const tab = this.route.snapshot.queryParamMap.get('tab');
+    if(tab === 'tickets') {
+      this.cambiarPestana('tickets');
+    };
   }
 
   cargarPerfil() {

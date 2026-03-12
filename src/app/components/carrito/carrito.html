@@ -44,7 +44,9 @@
         <h5 class="fw-bold text-primary text-center">Resumen</h5>
         <p>Productos: <strong>{{ totalCantidad() }}</strong></p>
         <p>Total: <strong>${{ totalPrecio() }}</strong></p>
-        <button class="btn btn-primary w-100 mb-2" (click)="confirmarCompra()">Confirmar compra</button>
+        <button class="btn btn-primary w-100 mb-2" (click)="confirmarCompra()" [disabled]="loading()">
+          {{ loading() ? "Procesando..." : "Confirmar compra" }}
+        </button>
         <a routerLink="/compra" class="btn btn-outline-primary w-100">Ver más productos</a>
       </div>
     </aside>
